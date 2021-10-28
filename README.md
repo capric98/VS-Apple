@@ -1,1 +1,1 @@
-# VS-on-Apple-Silicon
+# VapourSynth Plugins on Apple Silicon
