@@ -11,24 +11,14 @@ class Fmtconv < Formula
   # depends_on "vapoursynth" => :build
 
   def install
-    # ENV.deparallelize  # if your formula fails when building in parallel
-    # Remove unrecognized options if warned by configure
-    # https://rubydoc.brew.sh/Formula.html#std_configure_args-instance_method
+    # Patch to r26
+    system "/bin/bash", "-c", 'sed -i "" "261s/.*/#if \(defined \(__APPLE__\) \&\& conc_ARCHI == conc_ARCHI_X86\) \|\| \(defined \(__CYGWIN__\) \&\& conc_WORD_SIZE == 64\)/" src/conc/Interlocked.hpp'
+    system "/bin/bash", "-c", 'sed -i "" "312s/.*/\told = comp;\n\t__atomic_compare_exchange_n \(\n\t\t\&dest, \&old, excg,\n\t\tfalse, __ATOMIC_SEQ_CST, __ATOMIC_SEQ_CST\n\t\);/g" src/conc/Interlocked.hpp'
+
+    Dir.chdir("build/unix")
+    system "./autogen.sh"
     system "./configure", "--prefix=#{prefix}", "--disable-silent-rules"
-    #   CXX      ../../src/fmtcl/Dither.lo
-    # In file included from ../../src/fmtcl/Dither.cpp:29:
-    # In file included from ./../../src/fmtcl/Dither.h:26:
-    # In file included from ./../../src/conc/ObjPool.h:44:
-    # In file included from ./../../src/conc/CellPool.h:33:
-    # In file included from ./../../src/conc/LockFreeStack.h:45:
-    # In file included from ./../../src/conc/AtomicPtrIntPair.h:40:
-    # In file included from ./../../src/conc/Interlocked.h:132:
-    # ./../../src/conc/Interlocked.hpp:267:4: error: invalid output constraint '+A' in asm
-    #         :       "+A" (old)
-    #                 ^
-    # 1 error generated.
-    # make: *** [../../src/fmtcl/Dither.lo] Error 1
-    # system "cmake", "-S", ".", "-B", "build", *std_cmake_args
+    system "make", "install"
   end
 
   test do
