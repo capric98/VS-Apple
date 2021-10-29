@@ -13,7 +13,6 @@ class Bm3d < Formula
   depends_on "vapoursynth" => :build
 
   def install
-    # system "sed \"s/join_paths(vapoursynth_dep.get_pkgconfig_variable(.*)/'\/'/g\" meson.build"
     system "meson", "build/"
     system "ninja", "-C", "build/"
     system "meson", "install", "-C", "build/", "--destdir", "#{prefix}/lib"

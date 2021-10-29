@@ -2,13 +2,10 @@ class Ffms2 < Formula
   desc "Libav/ffmpeg based source library and Avisynth plugin"
   homepage "https://github.com/FFMS/ffms2"
   url "https://github.com/FFMS/ffms2/archive/2.40.tar.gz"
-  mirror "https://deb.debian.org/debian/pool/main/f/ffms2/ffms2_2.40.orig.tar.gz"
   sha256 "82e95662946f3d6e1b529eadbd72bed196adfbc41368b2d50493efce6e716320"
   # The FFMS2 source is licensed under the MIT license, but its binaries
   # are licensed under the GPL because GPL components of FFmpeg are used.
   license "GPL-2.0"
-  revision 1
-  head "https://github.com/FFMS/ffms2.git"
 
   option "with-customized-ffmpeg", "use customized ffmpeg"
 
