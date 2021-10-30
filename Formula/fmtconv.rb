@@ -1,8 +1,8 @@
 class Fmtconv < Formula
   desc "Format conversion tools for Vapoursynth"
   homepage "https://github.com/EleonoreMizo/fmtconv/"
-  url "https://github.com/EleonoreMizo/fmtconv/archive/refs/tags/r26.tar.gz"
-  sha256 "26748423bb10523c81cf13eea6006dad39cba9b69376ec035fc4a7e5c5fb24c1"
+  url "https://github.com/EleonoreMizo/fmtconv/archive/refs/tags/r27.tar.gz"
+  sha256 "32ddca10ee5a8e7e32b7fc15a9af2065a448a2db4e28dc8c31b6c02cafa38199"
   license "WTFPL"
 
   depends_on "autoconf" => :build
@@ -11,10 +11,6 @@ class Fmtconv < Formula
   # depends_on "vapoursynth" => :build
 
   def install
-    # Patch to r26
-    system "/bin/bash", "-c", 'sed -i "" "261s/.*/#if \(defined \(__APPLE__\) \&\& conc_ARCHI == conc_ARCHI_X86\) \|\| \(defined \(__CYGWIN__\) \&\& conc_WORD_SIZE == 64\)/" src/conc/Interlocked.hpp'
-    system "/bin/bash", "-c", 'sed -i "" "312s/.*/\told = comp;\n\t__atomic_compare_exchange_n \(\n\t\t\&dest, \&old, excg,\n\t\tfalse, __ATOMIC_SEQ_CST, __ATOMIC_SEQ_CST\n\t\);/g" src/conc/Interlocked.hpp'
-
     Dir.chdir("build/unix")
     system "./autogen.sh"
     system "./configure", "--prefix=#{prefix}", "--disable-silent-rules"
