@@ -1,6 +1,6 @@
 class Fmtconv < Formula
   desc "Format conversion tools for Vapoursynth"
-  homepage "https://github.com/EleonoreMizo/fmtconv/"
+  homepage "https://github.com/EleonoreMizo/fmtconv"
   url "https://github.com/EleonoreMizo/fmtconv/archive/refs/tags/r27.tar.gz"
   sha256 "32ddca10ee5a8e7e32b7fc15a9af2065a448a2db4e28dc8c31b6c02cafa38199"
   license "WTFPL"
@@ -8,6 +8,7 @@ class Fmtconv < Formula
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
+  # depends_on "zimg" => :build
   # depends_on "vapoursynth" => :build
 
   def install

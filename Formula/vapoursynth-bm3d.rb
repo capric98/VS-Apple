@@ -1,6 +1,6 @@
-class Bm3d < Formula
+class VapoursynthBm3d < Formula
   desc "BM3D denoising filter for VapourSynth"
-  homepage "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-BM3D/"
+  homepage "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-BM3D"
   url "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-BM3D/archive/refs/tags/r9.tar.gz"
   sha256 "3eb38c9e4578059042c96b408f5336b18d1f3df44896954713532cff735f1188"
   license "MIT License"
@@ -16,7 +16,7 @@ class Bm3d < Formula
     system "meson", "build/"
     system "ninja", "-C", "build/"
     system "meson", "install", "-C", "build/", "--destdir", "#{prefix}/lib"
-    system "/bin/bash", "-c", "cp -r $(find -L . -name libbm3d*) #{prefix}/lib"
+    system "/bin/bash", "-c", "cp -r $(find -L . -name *.dylib) #{prefix}/lib"
     system "rm", "-rf", "#{prefix}/lib/opt"
   end
 
